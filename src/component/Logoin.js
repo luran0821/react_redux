@@ -1,9 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import * as actionCreators from '../action/actionCreators' 
 
 const Login = (props) => {
-        const {name, password, loginNameChanege, loginPwdChanege, onClickLogin, isAuth} = props
+        const { name, password, loginNameChanege, loginPwdChanege, onClickLogin, redirecTo } = props
         return(
             <div>
                  <div>
@@ -19,10 +20,13 @@ const Login = (props) => {
                  <div>
                     <button name='login'
                             onClick= { onClickLogin }
-                    > login </button>
+                    > login 
+                   { redirecTo ? <Redirect to = { redirecTo } /> : null}
+                    </button>
                     <button name='register' > register </button>
                  </div>
-                 <div><button 
+                 <div>
+                 <button 
 
                             >login</button></div>
                  <div><button
@@ -36,7 +40,8 @@ const Login = (props) => {
 const mapStateToProps = (state) => ({
     name: state.login.name,
     password: state.login.password,
-    isAuth: state.login.isAuth  
+    isAuth: state.login.isAuth,
+    redirecTo: state.login.redirecTo  
 })
 
 

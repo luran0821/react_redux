@@ -1,20 +1,16 @@
 import * as types from '../action/types'
 import axios from 'axios'
 
+
 const initState = {
     name: '',
     password: '',
-    isAuth: false
+    isAuth: false,
+    redirecTo: ''
 }
 
 export default(state = initState, action) => {
     if(action.type === types.Login_NAME){
-
-        axios.get('/data')
-                  .then(res => {
-                      console.log(res)
-                  })
-
         const newState = JSON.parse(JSON.stringify(state))
         newState.name = action.value
         return newState
@@ -27,8 +23,16 @@ export default(state = initState, action) => {
     }
     if(action.type === types.Login){
         const newState = JSON.parse(JSON.stringify(state))
-        console.log(newState.name, newState.password)
+        axios.get('/data')
+        .then(res => {
+            newState.name = res.data.name
+            newState.password = res.data.password
+        })
+        newState.redirecTo = '/todolist'
+      
         return newState
     }
     return state
 }
+
+

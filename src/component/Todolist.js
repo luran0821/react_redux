@@ -11,7 +11,7 @@ const TodoList = (props) =>{
 
         return(
             <div>
-                { !isAuth ? <Redirect to='/login' /> : null }
+                {/* { !isAuth ? <Redirect to='/login' /> : null } */}
                 <div>
                 <input value = {inputValue}
                            onChange = {chanegeInputValue}

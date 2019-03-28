@@ -2,26 +2,28 @@ const express = require('express')
 const mongoose = require('mongoose')
 const session = require('express-session');
 const bodyparser = require('body-parser');
+const userRouter = require('./user')
 const redisStore = require('connect-redis')(session);
 
 //建立mongo连接后面跟要创建的数据库(集合connection)
-const DB_URL = 'mongodb://localhost:27017/imooc'
+//const DB_URL = 'mongodb://localhost:27017/imooc'
 
 const app =  express()
 
+///user/info userRouter子路由
+app.use('/user', userRouter)
 
 
-
-mongoose.connect(DB_URL)
-mongoose.connection.on('connected', function(){
-    console.log('mongo connect success')
-})
+// mongoose.connect(DB_URL)
+// mongoose.connection.on('connected', function(){
+//     console.log('mongo connect success')
+// })
 
 //创建表结构
-const User = mongoose.model('users', new mongoose.Schema({
-    name: {type: String, require: true},
-    age: {type: Number, require: true}
-}))
+// const User = mongoose.model('users', new mongoose.Schema({
+//     name: {type: String, require: true},
+//     age: {type: Number, require: true}
+// }))
 
 
 //创建数据
@@ -92,7 +94,7 @@ app.use(session({
 
 app.get('/data', function(req, res){
     User.find({}, function(err, doc){
-        return res.json(doc)
+        return res.json({name: 'ran', password: '123456'})
     })
     //res.json({name: 'app', type: 'IT'})
 })
