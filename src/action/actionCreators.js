@@ -1,4 +1,3 @@
-import axios from 'axios'
 import * as types from './types'
 
 export const changeInputValue = (e) => ({
@@ -29,5 +28,9 @@ export const onClickLogin = () => ({
 //   .catch(function (error) {
 //     console.log(error);
 //   })
-
 )
+
+
+export const Sign = () => ({
+    type: types.Sign
+})

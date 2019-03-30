@@ -3,6 +3,7 @@ import { combineReducers } from 'redux'
 
 import todolist from './todolist'
 import login from  './login'
+import sign from  './sign'
 /** 
  * combineReducers 辅助函数的作用是，
  * 把一个由多个不同 reducer 函数作为 value 的 object，
@@ -14,5 +15,5 @@ import login from  './login'
 
 export default combineReducers({
 
-    todolist,login
+    todolist,login,sign
 });
